@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rent_cart/Widgets/seller_drawer.dart';
 import 'package:rent_cart/globals/globals.dart';
 import 'package:rent_cart/main_screen/seller/rent_book/book_renting_screen.dart';
+import 'package:rent_cart/main_screen/seller/rent_subscription/subscirption_renting_screen.dart';
 
 class SellerHomeScreen extends StatefulWidget {
   @override
@@ -63,7 +64,9 @@ Widget? changeTo(selectedValue) {
     return BookRentingScreen(
       value: selectedValue,
     );
-  } else if (selectedValue == "rent Subscription") {
-    return Container();
+  } else if (selectedValue == "Rent Subscription") {
+    return SubscriptionRentingScreen(
+      value: selectedValue,
+    );
   }
 }
