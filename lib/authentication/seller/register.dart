@@ -156,6 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         .setString("email", currentUser.email.toString().trim());
     await sharedPreferences!.setString("name", nameController.text.trim());
     await sharedPreferences!.setString("photoUrl", sellerImageUrl!);
+    await sharedPreferences!.setString("role", 'seller');
   }
 
   @override

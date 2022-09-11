@@ -77,7 +77,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   const Text(
@@ -199,6 +199,22 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                   ),
                   Text(
                     widget.model!.timesRented!.toString(),
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Text(
+                    'Book Type:',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  Text(
+                    widget.model!.itemType!.toString(),
                     style: TextStyle(fontSize: 20),
                   ),
                 ],

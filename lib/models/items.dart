@@ -17,6 +17,7 @@ class Items {
   String? thumbnailUrl3;
   int? timesRented;
   String? title;
+  String? itemType;
   String? type;
 
   Items({
@@ -37,6 +38,7 @@ class Items {
     this.timesRented,
     this.title,
     this.type,
+    this.itemType,
   });
 
   Items.fromJson(Map<String, dynamic> json) {
@@ -57,6 +59,7 @@ class Items {
     timesRented = json["timesRented"];
     title = json["title"];
     type = json["type"];
+    itemType = json["itemType"];
   }
 
   Map<String, dynamic> toJson() {
@@ -78,6 +81,7 @@ class Items {
     data["timesRented"] = this.timesRented;
     data["title"] = this.title;
     data["type"] = this.type;
+    data["itemType"] = this.itemType;
 
     return data;
   }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rent_cart/Widgets/seller_drawer.dart';
 import 'package:rent_cart/globals/globals.dart';
+import 'package:rent_cart/main_screen/seller/rent_book/Item_search_screen.dart';
 import 'package:rent_cart/main_screen/seller/rent_book/book_renting_screen.dart';
 import 'package:rent_cart/main_screen/seller/rent_subscription/subscirption_renting_screen.dart';
+import 'package:rent_cart/main_screen/seller/rent_subscription/subscription_search_screen.dart';
 
 class SellerHomeScreen extends StatefulWidget {
   @override
@@ -49,7 +51,15 @@ class _SellerHomeScreenState extends State<SellerHomeScreen> {
               Icons.search,
             ),
             onPressed: () {
-              // Todo: go to search screen
+              if (selectedValue == 'Rent Subscription') {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (c) => SubscriptionSearchScreen()));
+              } else if (selectedValue == 'Book Renting') {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (c) => ItemSearchScreen()));
+              }
             },
           ),
         ],

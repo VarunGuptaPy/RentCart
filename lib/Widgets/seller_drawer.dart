@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rent_cart/authentication/auth_screen.dart';
 import 'package:rent_cart/authentication/seller/sellerAuth.dart';
+import 'package:rent_cart/main_screen/seller/total_earnings_screen.dart';
 
 import '../globals/globals.dart';
 
@@ -75,7 +77,10 @@ class SellerDrawer extends StatelessWidget {
                     "My Earnings",
                     style: TextStyle(color: Colors.black),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (c) => TotalEarnings()));
+                  },
                 ),
                 const Divider(
                   height: 10,
@@ -124,9 +129,13 @@ class SellerDrawer extends StatelessWidget {
                     style: TextStyle(color: Colors.black),
                   ),
                   onTap: () {
-                    firebaseAuth.signOut().then((value) => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (c) => const sellerAuth())));
+                    firebaseAuth.signOut().then(
+                          (value) => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (c) => const MyAuthScreen()),
+                          ),
+                        );
                   },
                 ),
               ],

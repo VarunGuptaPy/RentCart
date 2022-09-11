@@ -30,9 +30,12 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
   TextEditingController SingleWeekRentPrice = TextEditingController();
   TextEditingController SingleMonthRentPrice = TextEditingController();
   TextEditingController priceController = TextEditingController();
+  List<dynamic> bookTypes = [];
+  String selectedValue = "Action";
+  List<DropdownMenuItem<String>> menuItems = [];
+
   bool uploading = false;
   late String UniqueName = DateTime.now().millisecondsSinceEpoch.toString();
-
   takeImage(mContext, index) {
     return showDialog(
         context: mContext,
@@ -530,6 +533,24 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
             thickness: 3,
             color: Colors.amber,
           ),
+          const Text(
+            'Type of Book',
+            style: TextStyle(fontSize: 20),
+          ),
+          DropdownButton(
+            value: selectedValue,
+            items: menuItems,
+            onChanged: (String? value) {
+              setState(() {
+                selectedValue = value!;
+              });
+            },
+          ),
+          const Divider(
+            height: 10,
+            thickness: 3,
+            color: Colors.amber,
+          ),
         ],
       ),
     );
@@ -632,6 +653,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
       "thumbnailUrl3": downloadUrl3,
       "type": widget.value,
       "timesRented": 0,
+      "itemType": selectedValue,
     }).then((value) async {
       final itemsRef = FirebaseFirestore.instance.collection('items');
       await itemsRef.doc(UniqueName).set({
@@ -652,6 +674,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
         "thumbnailUrl3": downloadUrl3,
         "type": widget.value,
         "timesRented": 0,
+        "itemType": selectedValue,
       });
     }).then((value) {
       menuClear();
@@ -660,6 +683,33 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
         UniqueName = "";
       });
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection('BookTypes')
+        .doc('BookType')
+        .get()
+        .then((value) {
+      setState(() {
+        bookTypes = value.data()!['types'];
+      });
+      print(bookTypes);
+    }).then((value) {
+      for (int i = 0; i < bookTypes.length; i++) {
+        String tempValue = bookTypes[i];
+        menuItems.add(
+          DropdownMenuItem(value: tempValue, child: Text(tempValue)),
+        );
+      }
+    }).then((value) {
+      setState(() {
+        menuItems;
+      });
+    });
+    print(menuItems);
   }
 
   @override

@@ -115,6 +115,15 @@ class _userRegisterScreenState extends State<userRegisterScreen> {
             password: passwordController.text.trim())
         .then((auth) {
       currentUser = auth.user;
+    }).catchError((error) {
+      Navigator.pop(context);
+      showDialog(
+          context: context,
+          builder: (c) {
+            return ErrorDialog(
+              message: error.message.toString(),
+            );
+          });
     });
     if (currentUser != null) {
       saveDataToFirestore(currentUser!).then((value) {
@@ -132,8 +141,6 @@ class _userRegisterScreenState extends State<userRegisterScreen> {
       "userName": nameController.text.trim(),
       "userAvatarUrl": sellerImageUrl,
       "phone": phoneController.text.trim(),
-      "lat": position!.latitude,
-      "lng": position!.longitude
     });
 
     // save data locally
@@ -148,9 +155,8 @@ class _userRegisterScreenState extends State<userRegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Container(
-            child: Column(mainAxisSize: MainAxisSize.max, children: [
+    return Container(
+        child: Column(mainAxisSize: MainAxisSize.max, children: [
       Text(
         "Register",
         textAlign: TextAlign.center,
@@ -242,6 +248,6 @@ class _userRegisterScreenState extends State<userRegisterScreen> {
           ],
         ),
       ),
-    ])));
+    ]));
   }
 }

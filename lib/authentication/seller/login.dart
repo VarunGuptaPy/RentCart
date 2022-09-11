@@ -79,6 +79,8 @@ class _LoginScreenState extends State<LoginScreen> {
               .setString("name", snapshots.data()!["sellerName"]);
           await sharedPreferences!
               .setString("photoUrl", snapshots.data()!["sellerAvatarUrl"]);
+
+          await sharedPreferences!.setString("role", 'seller');
           Navigator.pop(context);
           Navigator.push(
               context, MaterialPageRoute(builder: (c) => SellerHomeScreen()));

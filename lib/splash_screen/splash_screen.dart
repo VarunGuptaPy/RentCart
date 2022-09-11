@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:rent_cart/authentication/auth_screen.dart';
+import 'package:rent_cart/globals/globals.dart';
+import 'package:rent_cart/main_screen/seller/home_screen.dart';
+import 'package:rent_cart/main_screen/user/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,8 +19,18 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(const Duration(seconds: 4), () {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (c) => MyAuthScreen()));
+      if (firebaseAuth.currentUser != null) {
+        if (sharedPreferences!.getString('role') == 'seller') {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (c) => SellerHomeScreen()));
+        } else {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (c) => MyHomeScreen()));
+        }
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => MyAuthScreen()));
+      }
     });
   }
 
