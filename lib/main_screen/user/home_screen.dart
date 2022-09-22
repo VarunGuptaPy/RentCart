@@ -2,9 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:rent_cart/Widgets/my_drawer.dart';
-import 'package:rent_cart/Widgets/user_Item_Card.dart';
+import 'package:rent_cart/Widgets/user_Item_Card_Book.dart';
 import 'package:rent_cart/main_screen/seller/rent_book/book_renting_screen.dart';
 import 'package:rent_cart/main_screen/user/book_renting/Book_renting_Screen_User.dart';
+import 'package:rent_cart/main_screen/user/item_search_screen_user.dart';
 import 'package:rent_cart/models/items.dart';
 
 class MyHomeScreen extends StatefulWidget {
@@ -51,8 +52,8 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 //     MaterialPageRoute(
                 //         builder: (c) => SubscriptionSearchScreen()));
               } else if (selectedValue == 'Book Renting') {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (c) => ItemSearchScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (c) => ItemSearchScreenUser()));
               }
             },
           ),

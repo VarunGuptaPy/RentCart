@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rent_cart/authentication/seller/sellerAuth.dart';
 import 'package:rent_cart/authentication/user/userAuth.dart';
-import 'seller/login.dart';
 
 class MyAuthScreen extends StatefulWidget {
   const MyAuthScreen({Key? key}) : super(key: key);
